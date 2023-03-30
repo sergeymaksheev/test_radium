@@ -1,5 +1,5 @@
 [flake8]
-extend-ignore = Q000
+extend-ignore = Q000, WPS213, WPS336
 exclude =
     .git,
     __pycache__,
