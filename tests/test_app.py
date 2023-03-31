@@ -79,11 +79,7 @@ def test_generate_hash_success_recursion(
         isfile_mock.assert_called_once()
         listdir_mock.assert_called_once_with("test_dir_name")
         mock_generate_hash.assert_called_once_with(
-            dir_temp="{test_path}/{name}".format(
-                test_path=test_path,
-                name=name,
-            ),
-        )
+            dir_temp=f"{test_path}/{name}",)
 
 
 def test_get_hash_success_generate_hash(
@@ -138,3 +134,7 @@ async def test_start_success(
     asyncio_gather_mock.assert_awaited_once()
     generate_hash_mock.assert_called_once()
     open_mock.assert_called_once()
+
+
+if __name__ == '__main__':
+    pytest.main()

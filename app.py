@@ -41,11 +41,7 @@ def generate_hash(dir_temp: str) -> None:
         for dirobject in listdir(dir_temp):
             if not dirobject.startswith("."):
                 generate_hash(
-                    dir_temp="{path1}/{path2}".format(
-                        path1=dir_temp,
-                        path2=dirobject,
-                    ),
-                )
+                    dir_temp=f"{dir_temp}/{dirobject}",)
 
 
 async def start():
