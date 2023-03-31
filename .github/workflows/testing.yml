@@ -1,0 +1,14 @@
+name: Test
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Test
+        uses: sergeymaksheev/test_radium@devop
+        with:
+          deps_list: 'requirement'
