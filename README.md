@@ -16,5 +16,5 @@ NB!!! Перед запуском необходимо установить пе
 GIT_REPO_URL=https://gitea.radium.group/radium/project-configuration.git
 
 
-![Build status][(https://github.com/sergeymaksheev/test_radium/actions/workflows/testing.yml/badge.svg?branch=main)]
+![Build status][(https://github.com/sergeymaksheev/test_radium/actions/workflows/testing.yml/badge.svg)]
 (https://github.com/sergeymaksheev/test_radium/actions/workflows/testing.yml)
