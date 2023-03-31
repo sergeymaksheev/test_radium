@@ -5,7 +5,7 @@ from unittest import mock
 import pytest
 from pytest_mock import MockerFixture
 
-from app import generate_hash, run_clone, start
+from src.app import generate_hash, run_clone, start
 
 
 @pytest.fixture(name="open_mock")
@@ -19,7 +19,7 @@ def open_fixture(mocker: MockerFixture) -> mock.MagicMock:
 
     """
     open_mock = mock.MagicMock()
-    mocker.patch("app.open", open_mock)
+    mocker.patch("src.app.open", open_mock)
     return open_mock
 
 
@@ -34,7 +34,7 @@ def isfile_fixture(mocker: MockerFixture) -> mock.MagicMock:
 
     """
     isfile_mock = mock.MagicMock(return_value=False)
-    mocker.patch("app.isfile", isfile_mock)
+    mocker.patch("src.app.isfile", isfile_mock)
     return isfile_mock
 
 
@@ -47,7 +47,7 @@ async def test_run_clone_success(mocker: MockerFixture):
 
     """
     repo_clone_from_mock = mock.MagicMock()
-    mocker.patch("app.Repo.clone_from", repo_clone_from_mock)
+    mocker.patch("src.app.Repo.clone_from", repo_clone_from_mock)
     test_path_to_repo = "test_path_to_repo"
     test_dir_temp = "test_dir_temp"
     await run_clone(test_path_to_repo, test_dir_temp)
@@ -71,9 +71,9 @@ def test_generate_hash_success_recursion(
     """
     name = "test_dir"
     listdir_mock = mock.MagicMock(return_value=[name])
-    mocker.patch("app.listdir", listdir_mock)
+    mocker.patch("src.app.listdir", listdir_mock)
 
-    with mock.patch("app.generate_hash") as mock_generate_hash:
+    with mock.patch("src.app.generate_hash") as mock_generate_hash:
         test_path = "test_dir_name"
         generate_hash(test_path)
         isfile_mock.assert_called_once()
@@ -97,10 +97,10 @@ def test_get_hash_success_generate_hash(
     """
     isfile_mock.return_value = True
     print_mock = mock.MagicMock()
-    mocker.patch("app.print", print_mock)
+    mocker.patch("src.app.print", print_mock)
 
     hashlib_mock = mock.MagicMock()
-    mocker.patch("app.hashlib", hashlib_mock)
+    mocker.patch("src.app.hashlib", hashlib_mock)
 
     test_file = "test_file"
     generate_hash(test_file)
@@ -121,13 +121,13 @@ async def test_start_success(
 
     """
     generate_hash_mock = mock.MagicMock()
-    mocker.patch("app.generate_hash", generate_hash_mock)
+    mocker.patch("src.app.generate_hash", generate_hash_mock)
     temporary_directory_mock = mock.MagicMock()
-    mocker.patch("app.tempfile.TemporaryDirectory", temporary_directory_mock)
+    mocker.patch("src.app.tempfile.TemporaryDirectory", temporary_directory_mock)
     asyncio_gather_mock = mock.AsyncMock()
-    mocker.patch("app.asyncio.gather", asyncio_gather_mock)
+    mocker.patch("src.app.asyncio.gather", asyncio_gather_mock)
     json_mock = mock.MagicMock()
-    mocker.patch("app.json", json_mock)
+    mocker.patch("src.app.json", json_mock)
 
     await start()
     temporary_directory_mock.assert_called_once()

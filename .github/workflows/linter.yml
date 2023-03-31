@@ -28,8 +28,5 @@ jobs:
     - run: isort .
     #   name: Run Mypy
     # - run: mypy .
-      name: Run Pylint
-    - run: pylint .
-
-   
-
+    #   name: Run Pylint
+    # - run: pylint .
