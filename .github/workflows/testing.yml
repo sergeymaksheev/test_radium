@@ -20,4 +20,4 @@ jobs:
       name: Run flake8
     - run: flake8 .
       name: Test
-    - run: python -m pytest tests/test_app.py .
+    - run: python -m pytest tests/test_app.py
