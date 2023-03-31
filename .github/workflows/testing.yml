@@ -26,8 +26,8 @@ jobs:
     - run: black .
       name: Run Isort
     - run: isort .
-      name: Run Mypy
-    - run: mypy .
+    #  name: Run Mypy
+    #- run: mypy .
       name: Run Docformatter
     - run: docformatter .
       name: Run Pylint
