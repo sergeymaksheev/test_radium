@@ -1,0 +1,28 @@
+name: Pytest
+on:
+  push:
+    branches: [devop, main]
+
+jobs:
+  build:
+    name: test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ['3.10']
+    steps:
+    - uses: actions/checkout@v3
+      name: Install python
+    - uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+      name: Install deps
+    - run: |
+        python - m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Test with pytest
+      run: |
+        export GIT_REPO_URL=http://test-git-repo.io
+        pytest
